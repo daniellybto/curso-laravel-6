@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/categoria/{flag}', function($flag) {
+    return "Produto da Categoria: {$flag}";
+});
+
+Route::get('/categoria/{url}/posts', function($url) {
+    return "Posts da categoria: {$url}";
+});
+
+//parâmetros opcionais/dinâmicos, coloco uma '?' depois do parâmetro e defino um valor default na função de callback:
+Route::get('/produtos/{idProduto?}', function ($idProduto = '') {
+    return "Produto(s) {$idProduto}";
+});
+
