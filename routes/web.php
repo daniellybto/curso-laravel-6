@@ -28,3 +28,22 @@ Route::get('/produtos/{idProduto?}', function ($idProduto = '') {
     return "Produto(s) {$idProduto}";
 });
 
+//Rotas com redirecionamento -> dessa rota para a rota 'redirect2':
+Route::get('redirect1', function() {
+    return redirect('/redirect2');
+});
+
+//outra forma de fazer o redirecionamento:
+Route::redirect('/redirect3', '/redirect2');
+
+Route::get('redirect2', function() {
+    return 'Redirect 02';
+});
+
+//Retornando a view diretamente:
+Route::get('/view', function() {
+    return view('welcome');
+});
+
+//outra forma de retornar o view:
+Route::view('/contact', 'contact');
