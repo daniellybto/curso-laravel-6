@@ -22,7 +22,7 @@ class PostController extends Controller
     public function index()
     {
         $test = "<h2>View Teste</h2>";
-        return view('teste', compact('test'));
+        return view('admin.pages.products.index', compact('test'));
     }
 
     /**
