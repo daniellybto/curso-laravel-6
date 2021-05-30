@@ -56,3 +56,44 @@ Route::get('hehe', function () {
 Route::get('/name-url', function() {
     return "hehehehehehe";
 })->name('url.name');
+
+
+//grupo de rotas:
+//forma não recomendada em sem agrupamento:
+
+// Route::get('/admin/dashboard', function(){
+//     return "Home Admin";
+// })->middleware('auth');
+
+// Route::get('/admin/financeiro', function(){
+//     return "Financeiro Admin";
+// })->middleware('auth');
+
+// Route::get('/admin/produtos', function(){
+//     return "Produtos Admin";
+// })->middleware('auth');
+
+
+//forma com agrupamento de rotas:
+Route::middleware(['auth'])->group(function() {
+
+    //esse prefix() é o que define o nome do prefixo das rotas
+    Route::prefix('admin')->group(function () {
+
+        Route::get('/dashboard', function(){
+            return "Home Admin";
+        });
+        
+        Route::get('/financeiro', function(){
+            return "Financeiro Admin";
+        });
+        
+        Route::get('/produtos', function(){
+            return "Produtos Admin";
+        });
+
+        Route::get('/', function () {
+            return "Admin";
+        });
+    });  
+});
