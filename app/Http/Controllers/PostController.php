@@ -64,7 +64,11 @@ class PostController extends Controller
         // dd($request->input('nome', 'valor default'));
 
         //o método $request->except('') retorna todos os valores, EXCETO o que eu inserir dentro das aspas:
-        dd($request->except('name'));
+        // dd($request->except('name'));
+
+        //método para receber upload de arquivos:
+        //daí eu já posso usar outro método para saber se esse arquivo é válido ou não (->isValid())
+        dd($request->file('photo')->isValid());
     }
 
     /**
