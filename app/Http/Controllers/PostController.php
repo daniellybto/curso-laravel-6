@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    protected $request;
+
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
