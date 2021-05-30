@@ -75,25 +75,21 @@ Route::get('/name-url', function() {
 
 
 //forma com agrupamento de rotas:
-Route::middleware(['auth'])->group(function() {
+Route::middleware([])->group(function() {
 
     //esse prefix() é o que define o nome do prefixo das rotas
     Route::prefix('admin')->group(function () {
 
-        Route::get('/dashboard', function(){
-            return "Home Admin";
-        });
-        
-        Route::get('/financeiro', function(){
-            return "Financeiro Admin";
-        });
-        
-        Route::get('/produtos', function(){
-            return "Produtos Admin";
-        });
+        //grupo de rotas para Namespaces:
+        Route:namespace('Admin')->group(function() {
 
-        Route::get('/', function () {
-            return "Admin";
+            Route::get('/dashboard', 'TesteController@teste');
+            
+            Route::get('/financeiro', 'TesteController@teste');
+            
+            Route::get('/produtos', 'TesteController@teste');
+    
+            Route::get('/', 'TesteController@teste');
         });
     });  
 });
