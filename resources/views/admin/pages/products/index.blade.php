@@ -5,8 +5,19 @@
 @section('content')
    <h1>Exibindo os Produtos</h1>
 
-   {{-- INCLUINDO O ARQUIVO DE ALETTS --}}
-   @include('admin.alerts.alerts')
+   {{-- INCLUINDO UM COMPONENTES e SLOT--}}
+
+   @component('admin.components.card')
+      @slot('title')
+          <h2>Título do Card</h2>
+      @endslot
+      Um Card de Exemplo
+   @endcomponent
+
+   <hr>
+
+   {{-- INCLUINDO O ARQUIVO DE ALETS --}}
+   @include('admin.includes.alerts', ['content' => 'Alerta de preços de produtos'])
    <hr>
    
    @if (isset($products))
