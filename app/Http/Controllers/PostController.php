@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateProductRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -43,11 +44,13 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreUpdateProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProductRequest $request)
     {
+        dd("Ok");
+
         // o método $request->all() mostra todos os dados da requisição!
         // dd($request->all());
 
@@ -71,11 +74,11 @@ class PostController extends Controller
         // dd($request->file('photo')->isValid());
 
         //aqui podemos validar os dados do formulário:
-        $request->validate([
-            'name' => 'required|min:3|max:255',
-            'description' => 'nullable|min:3|max:10000',
-            'photo' => 'required|image'
-        ]);
+        // $request->validate([
+        //     'name'        => 'required|min:3|max:255',
+        //     'description' => 'nullable|min:3|max:10000',
+        //     'photo'       => 'required|image'
+        // ]);
 
     }
 
