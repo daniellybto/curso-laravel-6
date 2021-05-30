@@ -5,6 +5,10 @@
 @section('content')
    <h1>Exibindo os Produtos</h1>
 
+   {{-- INCLUINDO O ARQUIVO DE ALETTS --}}
+   @include('admin.alerts.alerts')
+   <hr>
+   
    @if (isset($products))
        @foreach ($products as $item)
 
