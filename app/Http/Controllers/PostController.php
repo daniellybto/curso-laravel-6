@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.pages.products.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('Cadastrando......');
     }
 
     /**
