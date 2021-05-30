@@ -47,3 +47,12 @@ Route::get('/view', function() {
 
 //outra forma de retornar o view:
 Route::view('/contact', 'contact');
+
+//Rotas nomeadas:
+Route::get('hehe', function () {
+    return redirect()->route('url.name');
+});
+
+Route::get('/name-url', function() {
+    return "hehehehehehe";
+})->name('url.name');
