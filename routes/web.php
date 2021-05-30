@@ -93,3 +93,5 @@ Route::middleware([])->group(function() {
         });
     });  
 });
+
+Route::get('products', 'ProductController@index')->name('products.index');
