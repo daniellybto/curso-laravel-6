@@ -7,7 +7,7 @@
    <title>Document</title>
 </head>
 <body>
-   <h2>View Teste</h2>
-   {{ $test }}
+   {{-- <h2>View Teste</h2> --}}
+   {!! $test !!}
 </body>
 </html>
