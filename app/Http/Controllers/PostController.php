@@ -48,7 +48,23 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd('Cadastrando......');
+        // o método $request->all() mostra todos os dados da requisição!
+        // dd($request->all());
+
+        // o método $request->only() mostra pega dados específicos da requisição, por exemplo o 'name' e description:
+        // dd($request->only(['name', 'description']));
+
+        //o método $request->***** pega um dados específico da requisição, por exemplo o name:
+        // dd($request->name);
+
+        //outra opção é o $request->has(), para saber se o campo existe ou não: - caso não exista ele irá retornar false!
+        // dd($request->has('teste'));
+
+        //o método $request->input(''), vai retornar somente o valor daquele campo input!, caso esse campo não exista eu insiro um valor default
+        // dd($request->input('nome', 'valor default'));
+
+        //o método $request->except('') retorna todos os valores, EXCETO o que eu inserir dentro das aspas:
+        dd($request->except('name'));
     }
 
     /**
