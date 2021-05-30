@@ -105,3 +105,4 @@ Route::middleware([])->group(function() {
 
 //método com Resources:
 Route::resource('products', 'ProductController');
+Route::resource('posts', 'PostController');
