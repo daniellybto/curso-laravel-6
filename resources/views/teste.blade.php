@@ -8,6 +8,6 @@
 </head>
 <body>
    <h2>View Teste</h2>
-   {{ $testgit }}
+   {{ $test }}
 </body>
 </html>
