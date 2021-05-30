@@ -92,6 +92,9 @@
 @endsection
 
 
-<style>
-   .last {background: #ccc;}
-</style>
+{{-- aqui, através da diretiva push eu consigo inserir um pedaço do código em uma seção específica em app.blade.php --}}
+@push('styles')
+   <style>
+      .last {background: #ccc;}
+   </style>    
+@endpush
