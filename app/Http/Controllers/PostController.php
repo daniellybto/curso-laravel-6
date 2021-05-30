@@ -21,7 +21,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return 'Listagem dos Posts';
+        $test = 123;
+        return view('teste', compact('test'));
     }
 
     /**
