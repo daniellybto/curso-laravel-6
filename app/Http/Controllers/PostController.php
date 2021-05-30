@@ -68,7 +68,15 @@ class PostController extends Controller
 
         //método para receber upload de arquivos:
         //daí eu já posso usar outro método para saber se esse arquivo é válido ou não (->isValid())
-        dd($request->file('photo')->isValid());
+        // dd($request->file('photo')->isValid());
+
+        //aqui podemos validar os dados do formulário:
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'description' => 'nullable|min:3|max:10000',
+            'photo' => 'required|image'
+        ]);
+
     }
 
     /**
