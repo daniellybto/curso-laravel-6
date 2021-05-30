@@ -81,7 +81,7 @@ Route::middleware([])->group(function() {
     Route::prefix('admin')->group(function () {
 
         //grupo de rotas para Namespaces:
-        Route:namespace('Admin')->group(function() {
+        Route::namespace('Admin')->group(function() {
 
             Route::get('/dashboard', 'TesteController@teste');
             
