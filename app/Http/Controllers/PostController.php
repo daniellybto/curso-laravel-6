@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $test = "<h2>View Teste</h2>";
+        $test = 123;
         return view('admin.pages.products.index', compact('test'));
     }
 
