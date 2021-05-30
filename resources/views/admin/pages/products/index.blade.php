@@ -5,6 +5,26 @@
 @section('content')
    <h1>Exibindo os Produtos</h1>
 
+   @if (isset($products))
+       @foreach ($products as $item)
+
+{{-- a variável loop->last verifica se é o último elemento do loop --}}
+         <p class="@if ($loop->last) last @endif">{{$item}}</p>
+       @endforeach
+   @endif   
+
+   <hr>
+
+   @forelse ($products as $product)
+
+{{-- a variável loop->first verifica se é o Primeiro elemento do loop --}}
+      <p class="@if ($loop->first) last @endif">{{$product}}</p>       
+   @empty
+       <p>Não existem produtos cadastrados </p>
+   @endforelse
+
+   <hr>
+
    @if ($test === 123)
       é igual
    @else
@@ -55,3 +75,8 @@
    @endswitch
 
 @endsection
+
+
+<style>
+   .last {background: #ccc;}
+</style>

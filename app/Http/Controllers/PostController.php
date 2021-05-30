@@ -22,7 +22,12 @@ class PostController extends Controller
     public function index()
     {
         $test = 123;
-        return view('admin.pages.products.index', compact('test'));
+        $test3 = [1,2,3,4,5,6];
+        $products = ['Tv', 'Geladeira', 'Forno', "Sofa"];
+        // $products = [];
+        
+
+        return view('admin.pages.products.index', compact('test', 'test3', 'products'));
     }
 
     /**
