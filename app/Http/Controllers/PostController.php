@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -22,13 +23,20 @@ class PostController extends Controller
      */
     public function index()
     {
-        $test = 123;
-        $test3 = [1,2,3,4,5,6];
-        $products = ['Tv', 'Geladeira', 'Forno', "Sofa"];
+        // $test = 123;
+        // $test3 = [1,2,3,4,5,6];
+        // $products = ['Tv', 'Geladeira', 'Forno', "Sofa"];
         // $products = [];
-        
 
-        return view('admin.pages.products.index', compact('test', 'test3', 'products'));
+        //a função all() exibi todos os registros ...
+        // $products = Product::all();
+                
+        //aqui eu chamo os registros e utilizo a paginação...
+        $products = Product::paginate();        
+
+        return view('admin.pages.products.index',[
+            'products' => $products
+        ]);
     }
 
     /**

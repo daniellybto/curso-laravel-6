@@ -7,96 +7,33 @@
 
    <a href="{{ route('posts.create') }}">Cadastrar</a>
    <hr>
-   {{-- INCLUINDO UM COMPONENTES e SLOT--}}
 
-   @component('admin.components.card')
-      @slot('title')
-          <h2>Título do Card</h2>
-      @endslot
-      Um Card de Exemplo
-   @endcomponent
+   <table border="1">
+      <thead>
+         <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Ações</th>
+         </tr>
+      </thead>
 
-   <hr>
+      <tbody>
+         @foreach ($products as $product)
+             <tr>
+                <td> {{ $product->name }}</td>
+                <td> {{ $product->price }}</td>
+                <td>
+                   <a href="#">Detalhes</a>
+                </td>
+             </tr>
+         @endforeach
+      </tbody>
 
-   {{-- INCLUINDO O ARQUIVO DE ALETS --}}
-   @include('admin.includes.alerts', ['content' => 'Alerta de preços de produtos'])
-   <hr>
-   
-   @if (isset($products))
-       @foreach ($products as $item)
+   </table>
 
-{{-- a variável loop->last verifica se é o último elemento do loop --}}
-         <p class="@if ($loop->last) last @endif">{{$item}}</p>
-       @endforeach
-   @endif   
+   {{-- agora aqui eu utilizo a função links() que irá automaticamente gerar a paginação dos resultados --}}
+   {{-- como vou imprimir HTML é importante acrescentar os !! !! --}}
 
-   <hr>
+   {!! $products->links() !!}
 
-   @forelse ($products as $product)
-
-{{-- a variável loop->first verifica se é o Primeiro elemento do loop --}}
-      <p class="@if ($loop->first) last @endif">{{$product}}</p>       
-   @empty
-       <p>Não existem produtos cadastrados </p>
-   @endforelse
-
-   <hr>
-
-   @if ($test === 123)
-      é igual
-   @else
-      É diferente
-   @endif
-
-{{-- Esse operador @unless é o contrário do if, ou seja, só entra aqui se for diferente! --}}
-   @unless ($test === '123')
-      dasdfasdfasdf
-   @else
-      mfjfjfjfjf
-   @endunless
-
-
-{{-- o @isset verifica se a variável existe --}}
-   @isset($test2)
-      {{$test2}}
-   @endisset
-   
-{{-- o @empty verifica se a variável está vazia --}}
-   @empty($test3)
-      <p>Vazio...</p>       
-   @endempty   
-
-
-{{-- a diretiva @auth verifica se o usuário está autenticado --}}
-   @auth
-       <p>Autenticado</p>
-      @else
-         <p>Não Autenticado</p>
-   @endauth
-
-{{-- a diretiva @guest só vai entrar se o usuário não estiver autenticado! --}}
-   @guest
-      <p>Não Autenticado guest</p>    
-   @endguest
-
-
-   @switch($test)
-         @case(1)
-            Igual a 1
-            @break
-         @case(123)
-            Igual a 123
-            @break
-         @default
-            Default           
-   @endswitch
-
-@endsection
-
-
-{{-- aqui, através da diretiva push eu consigo inserir um pedaço do código em uma seção específica em app.blade.php --}}
-@push('styles')
-   <style>
-      .last {background: #ccc;}
-   </style>    
-@endpush
+ @endsection  
