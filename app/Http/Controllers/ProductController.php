@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,18 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        return "Exibindo o produto de id: {$id}";
+        //usando o método firs() para obter apenas um objeto do tipo Product
+        $product = Product::where('id', $id)->first();
+
+        //outra forma de buscar pelo id é buscar pelo método find():
+        //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
+        if(!$product = Product::find($id)){
+            return redirect()->back();
+        }
+
+        return view('admin.pages.products.show',[
+            'product' => $product
+        ]);
     }
 
     public function create()
