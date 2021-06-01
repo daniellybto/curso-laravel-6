@@ -5,15 +5,15 @@
 @section('content')
    <h1>Exibindo os Produtos</h1>
 
-   <a href="{{ route('posts.create') }}">Cadastrar</a>
+   <a href="{{ route('posts.create') }}" class="btn btn-primary">Cadastrar</a>
    <hr>
 
-   <table border="1">
+   <table class="table table-striped">
       <thead>
          <tr>
             <th>Nome</th>
             <th>Preço</th>
-            <th>Ações</th>
+            <th width=100>Ações</th>
          </tr>
       </thead>
 
