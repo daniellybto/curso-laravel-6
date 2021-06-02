@@ -5,26 +5,31 @@
 @section('content')
    <h1>Cadastrar Novo Produto</h1>
 
-   {{-- aqui eu vou fazer a exibição os detalhes das validações, ou seja, caso tenha ocorrido algum erro será exibido aqui as mensagens de validação --}}
-   {{-- aqui, o método $erros->any() verifica se existe ou não erros, se existir ele será exibido... --}}
-   @if ($errors->any())
-      <ul>
-         @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-         @endforeach
-      </ul>
-      
-   @endif
+   @include('admin.includes.alerts')
 
    <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
 
-      {{-- aqui para que eu recupere o valor de um input (caso tenha algum erro de validação), que está armazenado na seção vou utilizar o método old() --}}
+      <div class="form-group">
+         {{-- aqui para que eu recupere o valor de um input (caso tenha algum erro de validação), que está armazenado na seção vou utilizar o método old() --}}
+         <input type = "text" name = "name" class="form-control" placeholder = "Nome:" value = "{{ old('name')}}">
+      </div>
 
-      <input type = "text" name = "name"        placeholder = "Nome:" value      = "{{ old('name')}}">
-      <input type = "text" name = "description" placeholder = "Descrição:" value = "{{ old('description')}}">
-      <input type = "file" name = "photo" >
-      <button type="submit">Enviar</button>
+      <div class="form-group">
+         <input type = "text" name = "price" class="form-control" placeholder = "Preço:" value = "{{ old('price')}}">
+      </div>   
+
+      <div class="form-group">
+         <input type = "text" name = "description" class="form-control" placeholder = "Descrição:" value = "{{ old('description')}}">
+      </div>      
+
+      <div class="form-group">
+         <input type = "file" name = "image" >
+      </div>
+      
+      <div class="form-group">
+         <button type="submit" class="btn btn-success">Enviar</button>
+      </div>
    </form>
 
 @endsection

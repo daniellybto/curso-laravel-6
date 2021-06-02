@@ -57,7 +57,14 @@ class PostController extends Controller
      */
     public function store(StoreUpdateProductRequest $request)
     {
-        dd("Ok");
+        // também pode ser feito através de:
+        // $data = $request->all();
+
+        $data = $request->only('name', 'description', 'price');
+
+        Product::create($data);
+
+        return redirect()->route('posts.index');
 
         // o método $request->all() mostra todos os dados da requisição!
         // dd($request->all());
@@ -71,7 +78,7 @@ class PostController extends Controller
         //outra opção é o $request->has(), para saber se o campo existe ou não: - caso não exista ele irá retornar false!
         // dd($request->has('teste'));
 
-        //o método $request->input(''), vai retornar somente o valor daquele campo input!, caso esse campo não exista eu insiro um valor default
+        //o método $req uest->input(''), vai retornar somente o valor daquele campo input!, caso esse campo não exista eu insiro um valor default
         // dd($request->input('nome', 'valor default'));
 
         //o método $request->except('') retorna todos os valores, EXCETO o que eu inserir dentro das aspas:
