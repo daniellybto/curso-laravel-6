@@ -45,7 +45,13 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        return "Form para editar o produto: {$id}";
+        //outra forma de buscar pelo id é buscar pelo método find():
+        //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
+        if(!$product = $this->repository->find($id)){
+            return redirect()->back();
+        }
+
+        return view('admin.pages.products.edit', compact('product'));
     }
 
     public function store()
@@ -55,12 +61,20 @@ class ProductController extends Controller
     
     public function update(Request $request, $id)
     {
-        return "Editando o produto: {$id}";
+        //outra forma de buscar pelo id é buscar pelo método find():
+        //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
+        if(!$product = $this->repository->find($id)){
+            return redirect()->back();
+        }
+
+        $product->update($request->all());
+        return redirect()->route('posts.index');
+
     }
     
     public function destroy($id)
     {
-         //outra forma de buscar pelo id é buscar pelo método find():
+        //outra forma de buscar pelo id é buscar pelo método find():
         //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
         if(!$product = $this->repository->find($id)){
             return redirect()->back();

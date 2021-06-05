@@ -6,7 +6,6 @@
    <h1>Exibindo os Produtos</h1>
 
    <a href="{{ route('posts.create') }}" class="btn btn-primary">Cadastrar</a>
-   <hr>
 
    <table class="table table-striped">
       <thead>
@@ -23,6 +22,7 @@
                 <td> {{ $product->name }}</td>
                 <td> {{ $product->price }}</td>
                 <td>
+                   <a href="{{ route('products.edit', $product->id) }}">Editar</a>
                    <a href="{{ route('products.show', $product->id) }}">Detalhes</a>
                 </td>
              </tr>
