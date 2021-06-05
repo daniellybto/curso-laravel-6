@@ -9,12 +9,13 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     protected $request;
+    private $repository;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, Product $product)
     {
         $this->request = $request;
+        $this->repository = $product;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -62,7 +63,8 @@ class PostController extends Controller
 
         $data = $request->only('name', 'description', 'price');
 
-        Product::create($data);
+        //como acrescentei o Model Product no create para o atributo repository, agora aqui é só referenciar:
+        $this->repository->create($data);
 
         return redirect()->route('posts.index');
 

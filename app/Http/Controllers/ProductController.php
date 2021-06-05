@@ -6,7 +6,16 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
-{
+{ 
+    protected $request;
+    private $repository;
+
+    public function __construct(Request $request, Product $product)
+    {
+        $this->request = $request;
+        $this->repository = $product;
+    }
+
     public function index()
     {
         $products = ['Product 01', 'Product 02', 'Product 03'];
@@ -16,11 +25,11 @@ class ProductController extends Controller
     public function show($id)
     {
         //usando o método firs() para obter apenas um objeto do tipo Product
-        $product = Product::where('id', $id)->first();
+        $product = $this->repository->where('id', $id)->first();
 
         //outra forma de buscar pelo id é buscar pelo método find():
         //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
-        if(!$product = Product::find($id)){
+        if(!$product = $this->repository->find($id)){
             return redirect()->back();
         }
 
@@ -44,13 +53,23 @@ class ProductController extends Controller
         return 'Cadastrando um novo produto';
     }
     
-    public function update($id)
+    public function update(Request $request, $id)
     {
         return "Editando o produto: {$id}";
     }
     
     public function destroy($id)
     {
-        return "Deletando o produto: {$id}";
+         //outra forma de buscar pelo id é buscar pelo método find():
+        //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
+        if(!$product = $this->repository->find($id)){
+            return redirect()->back();
+        }
+
+        //aqui vai remover o produto
+        $product->delete();
+
+        //redirecionar para a lista dos produtos:
+        return redirect()->route('posts.index');
     }
 }
