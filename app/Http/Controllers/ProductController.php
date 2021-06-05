@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -58,8 +59,15 @@ class ProductController extends Controller
     {
         return 'Cadastrando um novo produto';
     }
-    
-    public function update(Request $request, $id)
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreUpdateProductRequest  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */    
+    public function update(StoreUpdateProductRequest $request, $id)
     {
         //outra forma de buscar pelo id é buscar pelo método find():
         //caso a busca pelo método find() não encontre nenhum resultado o retorno será 'null'
