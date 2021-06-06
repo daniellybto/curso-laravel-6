@@ -94,4 +94,22 @@ class ProductController extends Controller
         //redirecionar para a lista dos produtos:
         return redirect()->route('posts.index');
     }
+
+    /**
+     * Search Products
+     */
+    public function search(Request $request)
+    {   
+        // quando eu mudo a pagina eu preciso passar meus dados da pesquisa, para isso eu vou criar um ARRAY para guardar o termo de busca:
+        // $filters = $request->all(); //dessa forma aqui aparece, na URL uma variável chamada '_token=', para tirar ela eu uso a forma a seguir, com o método except()
+        $filters = $request->except('_token');
+
+        $products = $this->repository->search($request->filter);
+
+        return view('admin.pages.products.index',[
+            'products' => $products,
+            'filters'  => $filters
+        ]);
+    }
+
 }

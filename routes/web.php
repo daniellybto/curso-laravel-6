@@ -1,15 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//importante colocar o método any(), pois daí faremos o search/filtro na paginação!
+//outro ponto importante é o nome da rota ser o mesmo da action do controller e depois do /
+Route::any('products/search', 'ProductController@search')->name('products.search');
 
 Route::get('/', function () {
     return view('welcome');
