@@ -2,7 +2,7 @@
 
 //importante colocar o método any(), pois daí faremos o search/filtro na paginação!
 //outro ponto importante é o nome da rota ser o mesmo da action do controller e depois do /
-Route::any('products/search', 'ProductController@search')->name('products.search');
+Route::any('products/search', 'ProductController@search')->name('products.search')->middleware('auth'); //com esse middleware eu garanto que essa rota só poderá se acessada se o usuário estiver autenticado!
 
 Route::get('/', function () {
     return view('welcome');
@@ -97,5 +97,12 @@ Route::middleware([])->group(function() {
 // Route::post('products', 'ProductController@index')->name('products.index');
 
 //método com Resources:
-Route::resource('products', 'ProductController');
-Route::resource('posts', 'PostController');
+Route::resource('products', 'ProductController')->middleware('auth');
+Route::resource('posts', 'PostController')->middleware('auth');
+//para desativar o register, isso serve para não deixar que outros usuários se cadastrem no sistema:
+// Auth::routes(['register' => false]);
+Auth::routes();
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
