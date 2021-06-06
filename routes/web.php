@@ -98,7 +98,7 @@ Route::middleware([])->group(function() {
 
 //método com Resources:
 Route::resource('products', 'ProductController')->middleware('auth');
-Route::resource('posts', 'PostController')->middleware('auth');
+Route::resource('posts', 'PostController')->middleware(['auth' , 'check.is.admin']);
 //para desativar o register, isso serve para não deixar que outros usuários se cadastrem no sistema:
 Auth::routes(['register' => false]);
 // Auth::routes();
