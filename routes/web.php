@@ -100,9 +100,5 @@ Route::middleware([])->group(function() {
 Route::resource('products', 'ProductController')->middleware('auth');
 Route::resource('posts', 'PostController')->middleware('auth');
 //para desativar o register, isso serve para não deixar que outros usuários se cadastrem no sistema:
-// Auth::routes(['register' => false]);
-Auth::routes();
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['register' => false]);
+// Auth::routes();
